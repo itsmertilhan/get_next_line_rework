@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merilhan <merilhan@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/19 14:55:16 by merilhan          #+#    #+#             */
+/*   Updated: 2026/11/19 14:55:17 by merilhan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
@@ -18,9 +30,9 @@ char	*get_next_line(int fd)
 		line_len = ft_find_newline(reader);
 	}
 	if (line_len > 0)
-		return (ft_extract_line(reader, line_len));
+		return (ft_take_line(reader, line_len));
 	if (reader->length > 0)
-		return (ft_extract_line(reader, reader->length));
+		return (ft_take_line(reader, reader->length));
 	return (ft_reset_reader(reader));
 }
 

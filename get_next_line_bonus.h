@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merilhan <merilhan@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/19 14:55:22 by merilhan          #+#    #+#             */
+/*   Updated: 2026/11/19 14:55:23 by merilhan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
@@ -37,7 +49,7 @@ int		ft_first_marked_byte(size_t word);
 int		ft_grow_buffer(t_reader *reader);
 size_t	ft_find_newline(t_reader *reader);
 int		ft_read_chunk(int fd, t_reader *reader);
-char	*ft_extract_line(t_reader *reader, size_t line_len);
+char	*ft_take_line(t_reader *reader, size_t line_len);
 char	*ft_reset_reader(t_reader *reader);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merilhan <merilhan@student.42kocaeli.com.t +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/19 14:55:28 by merilhan          #+#    #+#             */
+/*   Updated: 2026/11/19 14:55:29 by merilhan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 int	ft_grow_buffer(t_reader *reader)
@@ -7,7 +19,7 @@ int	ft_grow_buffer(t_reader *reader)
 	size_t	i;
 
 	cap_exp = reader->flags >> CAP_SHIFT;
-	while (((size_t)1 << cap_exp) - reader->length < BUFFER_SIZE)
+	while ((ssize_t)(((size_t)1 << cap_exp) - reader->length) < BUFFER_SIZE)
 		cap_exp++;
 	new_buffer = malloc((size_t)1 << cap_exp);
 	if (!new_buffer)
@@ -50,8 +62,10 @@ size_t	ft_find_newline(t_reader *reader)
 int	ft_read_chunk(int fd, t_reader *reader)
 {
 	ssize_t	bytes_read;
-	size_t	free_space;
+	ssize_t	free_space;
 
+	if (BUFFER_SIZE <= 0)
+		return (-1);
 	free_space = ft_get_capacity(reader) - reader->length;
 	if (free_space < BUFFER_SIZE && !ft_grow_buffer(reader))
 	{
@@ -68,7 +82,7 @@ int	ft_read_chunk(int fd, t_reader *reader)
 	return ((int)bytes_read);
 }
 
-char	*ft_extract_line(t_reader *reader, size_t line_len)
+char	*ft_take_line(t_reader *reader, size_t line_len)
 {
 	char	*line;
 	size_t	i;
